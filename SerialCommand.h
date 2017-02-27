@@ -18,7 +18,7 @@ Oct 2013 - SerialCommand object can be created using a SoftwareSerial object, fo
            a SoftwareSerial port in the project.  sigh.   See Example Sketch for usage. 
 Oct 2013 - Conditional compilation for the SoftwareSerial support, in case you really, really
            hate it and want it removed.  
-Feb 2017 - Allow command and arguments into two buffers
+Feb 2017 - Allow command and arguments into two buffers JSON
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public

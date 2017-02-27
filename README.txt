@@ -1,18 +1,17 @@
 An Arduino library to tokenize and parse commands received over a serial port. 
 
-Initially documented here: http://awtfy.com/2011/05/23/a-minimal-arduino-library-for-processing-serial-commands/
-
-An alternate version of this library is available as https://github.com/kroimon/Arduino-SerialCommand 
+Initially documented here: http://arduino.vn/node/1497
 
 This version is the one on Github. 
 
 /******************************************************************************* 
 SerialCommand - An Arduino library to tokenize and parse commands received over
 a serial port. 
-Copyright (C) 2011-2013 Steven Cogswell  <steven.cogswell@gmail.com>
-http://awtfy.com
+Based on 2011-2013 Steven Cogswell  <steven.cogswell@gmail.com>
+Copyright 2017 Ngo Huynh Ngoc Khanh <ngohuynhngockhanh@gmail.com>
+http://arduino.vn
 
-Version 20131021A.   
+Version 2017.   
 
 Version History:
 May 11 2011 - Initial version
@@ -24,7 +23,8 @@ Oct 2013 - SerialCommand object can be created using a SoftwareSerial object, fo
            support.  Requires #include <SoftwareSerial.h> in your sketch even if you don't use 
            a SoftwareSerial port in the project.  sigh.   See Example Sketch for usage. 
 Oct 2013 - Conditional compilation for the SoftwareSerial support, in case you really, really
-           hate it and want it removed. 
+           hate it and want it removed.  
+Feb 2017 - Allow command and arguments into two buffers JSON
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
