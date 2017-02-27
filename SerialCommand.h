@@ -67,7 +67,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #define SERIALCOMMANDBUFFER 10
 #define ARGUMENTBUFFER 256
-#define MAXSERIALCOMMANDS	10
+#define MAXSERIALCOMMANDS	16
 #define MAXDELIMETER 2
 
 #define SERIALCOMMANDDEBUG 1
