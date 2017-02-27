@@ -156,7 +156,7 @@ void SerialCommand::readSerial()
 					}
 				}
 				if (matched==false) {
-					(*defaultHandler)(); 
+					(*defaultHandler)((String)token); 
 					clearBuffer(); 
 				}
 			}
@@ -205,7 +205,7 @@ void SerialCommand::addCommand(const char *command, void (*function)())
 
 // This sets up a handler to be called in the event that the receveived command string
 // isn't in the list of things with handlers.
-void SerialCommand::addDefaultHandler(void (*function)())
+void SerialCommand::addDefaultHandler(void (*function)(String))
 {
 	defaultHandler = function;
 }
