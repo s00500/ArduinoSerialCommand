@@ -111,6 +111,7 @@ char *SerialCommand::next()
 // buffer for a prefix command, and calls handlers setup by addCommand() member
 void SerialCommand::readSerial() 
 {
+	char prev = 'a';
 	// If we're using the Hardware port, check it.   Otherwise check the user-created SoftwareSerial Port
 	#ifdef SERIALCOMMAND_HARDWAREONLY
 	while (Serial.available() > 0) 
@@ -132,7 +133,7 @@ void SerialCommand::readSerial()
 		#ifdef SERIALCOMMANDDEBUG
 		Serial.print(inChar);   // Echo back to serial stream
 		#endif
-		if (inChar==term) {     // Check for the terminator (default '\r') meaning end of command
+		if (inChar==term && prev != term) {     // Check for the terminator (default '\r') meaning end of command
 			#ifdef SERIALCOMMANDDEBUG
 			Serial.print("Received: "); 
 			Serial.println(buffer);
@@ -145,6 +146,9 @@ void SerialCommand::readSerial()
 			if (!nowReading) { //read buffer
 				token = strtok_r(buffer,delim,&last);   // Search for command at start of buffer
 				command = token;
+				if (command.indexOf("}") > -1) {
+					nowReading = !nowReading;//kiểm tra command có } thì nó bị lỗi => hoán vị lại!
+				}
 				if (token == NULL) return; 
 			} else {
 				matched=false; 
@@ -187,7 +191,8 @@ void SerialCommand::readSerial()
 				bufferArg[bufArgPos++]=inChar;   // Put character into bufferArg
 				bufferArg[bufArgPos]='\0';  // Null terminate
 				if (bufArgPos > ARGUMENTBUFFER-1) bufArgPos=0; // wrap buffer around if full  
-			}			
+			}		
+			prev = inChar;
 		}
 	}
 }
