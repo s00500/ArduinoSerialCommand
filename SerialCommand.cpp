@@ -144,9 +144,10 @@ void SerialCommand::readSerial()
 			#endif
 			if (!nowReading) { //read buffer
 				token = strtok_r(buffer,delim,&last);   // Search for command at start of buffer
+				command = token;
 				if (token == NULL) return; 
-				matched=false; 
 			} else {
+				matched=false; 
 				for (i=0; i<numCommand; i++) {
 					#ifdef SERIALCOMMANDDEBUG
 					Serial.print("Comparing ["); 
@@ -170,7 +171,7 @@ void SerialCommand::readSerial()
 					}
 				}
 				if (matched==false) {
-					(*defaultHandler)((String)token); 
+					(*defaultHandler)(command); 
 					clearBuffer(); 
 				}
 			}

@@ -98,6 +98,7 @@ class SerialCommand
 		char term;                          // Character that signals end of command (default '\r')
 		char *token;                        // Returned token from the command buffer as returned by strtok_r
 		char *last;                         // State variable used by strtok_r during processing
+		String command;
 		typedef struct _callback {
 			char command[SERIALCOMMANDBUFFER];
 			void (*function)();
