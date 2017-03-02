@@ -107,6 +107,7 @@ class SerialCommand
 		SerialCommandCallback CommandList[MAXSERIALCOMMANDS];   // Actual definition for command/handler array
 		void (*defaultHandler)(String);           // Pointer to the default handler function 
 		int usingSoftwareSerial;            // Used as boolean to see if we're using SoftwareSerial object or not
+		bool addedDefaultCommand;
 		#ifndef SERIALCOMMAND_HARDWAREONLY 
 		SoftwareSerial *SoftSerial;         // Pointer to a user-created SoftwareSerial object
 		#endif

@@ -58,6 +58,7 @@ SerialCommand::SerialCommand()
 	term='\r';   // return character, default terminator for commands
 	numCommand=0;    // Number of callback handlers installed
 	clearBuffer(); 
+	addedDefaultCommand = false;
 }
 
 #ifndef SERIALCOMMAND_HARDWAREONLY
@@ -71,6 +72,7 @@ SerialCommand::SerialCommand(SoftwareSerial &_SoftSer)
 	term='\r';   // return character, default terminator for commands
 	numCommand=0;    // Number of callback handlers installed
 	clearBuffer(); 
+	addedDefaultCommand = false;
 }
 #endif
 
@@ -175,7 +177,8 @@ void SerialCommand::readSerial()
 					}
 				}
 				if (matched==false) {
-					(*defaultHandler)(command); 
+					if (addedDefaultCommand)
+						(*defaultHandler)(command); 
 					clearBuffer(); 
 				}
 			}
@@ -228,4 +231,5 @@ void SerialCommand::addCommand(const char *command, void (*function)())
 void SerialCommand::addDefaultHandler(void (*function)(String))
 {
 	defaultHandler = function;
+	addedDefaultCommand = true;
 }
